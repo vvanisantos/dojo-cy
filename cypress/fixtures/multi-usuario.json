@@ -1,0 +1,17 @@
+[
+    {
+        "nome": "Vanessa",
+        "usuario": "vanessa@teste.com",
+        "senha": "teste@123"
+    },
+    {
+        "nome": "Fábio",
+        "usuario": "fabio@teste.com",
+        "senha": "teste@123"
+    },
+    {
+        "nome": "Felipe Araujo",
+        "senha": "teste@123",
+        "perfil": "faker"
+    }
+]

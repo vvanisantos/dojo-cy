@@ -7,43 +7,14 @@ describe('Funcionalidade: Tela criar perfil', () => {
         cy.visit('criar-perfil')
     });
 
-    it('Criar perfil somente com campos obrigatórios', () => {
-        cy.get('#mui-component-select-status').click()
-        cy.contains('QA Pleno').click()
-        cy.get('[data-test="profile-skills"] > .MuiInputBase-root > .MuiInputBase-input').type('Teste manuais, Automação de testes, Teste de integração')
-        cy.get('[data-test="profile-submit"]').click()
-        cy.get('[data-test="dashboard-welcome"]').should('contain', 'Bem-vindo Vanessa')
-    });
-        
-    it('Criar perfil completo', () => {
-        cy.get('#mui-component-select-status').click()
-        cy.contains('QA Pleno').click()
-        cy.get('[data-test="profile-company"] > .MuiInputBase-root > .MuiInputBase-input').type('AmbevTech')
-        cy.get('[data-test="profile-webSite"] > .MuiInputBase-root > .MuiInputBase-input').type('https://www.ambevtech.com.br/')
-        cy.get('[data-test="profile-location"] > .MuiInputBase-root > .MuiInputBase-input').type('Blumenau, SC')
-        cy.get('[data-test="profile-skills"] > .MuiInputBase-root > .MuiInputBase-input').type('Teste manuais, Automação de testes, Teste de integração')
-        cy.get('[data-test="profile-gitHub"] > .MuiInputBase-root > .MuiInputBase-input').type('vvanisantos')
-        cy.get('[rows="1"]').type('Mais de 10 anos atuando no setor de tecnologia na área de qualidade de software.')
-        cy.get('[data-test="profile-socials"]').click()
-        cy.get('[data-test="profile-facebook"] > .MuiInputBase-root > .MuiInputBase-input').type('https://www.facebook.com.br')
-        cy.get('[data-test="profile-submit"]').click()
-
-        cy.get('[data-test="dashboard-welcome"]').should('contain', 'Bem-vindo Vanessa')
+     
+     it.only('Deve criar perfil com sucesso - Commands', () => {
+        cy.criarPerfil('QA Pleno', 'AmbevTech', 'https://www.ambevtech.com.br/', 'Blumenau, SC', 'Teste manuais, Automação de testes, Teste de integração', 'vvanisantos', 'Mais de 10 anos atuando no setor de tecnologia na área de qualidade de software.')
+        cy.get('[data-test="dashboard-editProfile"]').should('exist')
      });
-    
-
-     it.only('Validação do endereço Website', () => {
-        cy.get('#mui-component-select-status').click()
-        cy.contains('QA Pleno').click()
-        cy.get('[data-test="profile-company"] > .MuiInputBase-root > .MuiInputBase-input').type('AmbevTech')
-        cy.get('[data-test="profile-webSite"] > .MuiInputBase-root > .MuiInputBase-input').type('www.ambevtech.com.br/')
-        cy.get('[data-test="profile-location"] > .MuiInputBase-root > .MuiInputBase-input').type('Blumenau, SC')
-        cy.get('[data-test="profile-skills"] > .MuiInputBase-root > .MuiInputBase-input').type('Teste manuais, Automação de testes, Teste de integração')
-        cy.get('[data-test="profile-gitHub"] > .MuiInputBase-root > .MuiInputBase-input').type('vvanisantos')
-        cy.get('[rows="1"]').type('Mais de 10 anos atuando no setor de tecnologia na área de qualidade de software.')
-        cy.get('[data-test="profile-submit"]').click()
-        
-        cy.get('.MuiFormHelperText-root').should('contain','Digite uma url válida') 
+     
+     it('Deve validar mensagem de erro ao cadastrar com site errado', () => {
+        cy.criarPerfil('QA Pleno', 'AmbevTech', 'www', 'Blumenau, SC', 'Teste manuais, Automação de testes, Teste de integração', 'vvanisantos', 'Mais de 10 anos atuando no setor de tecnologia na área de qualidade de software.')
+        cy.contains('Digite uma url válida').should('be.visible')
      });
-
 });

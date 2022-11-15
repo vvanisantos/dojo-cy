@@ -2,11 +2,14 @@
 
 describe('Funcionalidade: Criar perfil', () => {
     beforeEach(() => {
-        cy.login('vanessa@teste.com', 'teste@123')
-        //cy.loginApp('vanessa@teste.com', 'teste@123')
+        cy.loginApp()
         cy.visit('criar-perfil')
     });
      
+    it.only('Deve visitar a tela sem abrir a tela de login', () => {
+      cy.log('Visitou!!!!!!')
+    });
+
      it('Deve criar perfil com sucesso - Commands', () => {
         cy.criarPerfil('QA Pleno', 'AmbevTech', 'https://www.ambevtech.com.br/', 'Blumenau, SC', 'Teste manuais, Automação de testes, Teste de integração', 'vvanisantos', 'Mais de 10 anos atuando no setor de tecnologia na área de qualidade de software.')
         cy.get('[data-test="dashboard-editProfile"]').should('exist')

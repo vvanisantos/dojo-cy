@@ -80,3 +80,18 @@ Cypress.Commands.add('criarPost', (token, texto) => {
         }
     })
 })
+
+Cypress.Commands.add('loginApp', (email, senha) => {
+    cy.request({
+        method: 'POST',
+        url: '/api/auth',
+        body: {
+            "email": user[0].usuario,
+            "password": user[0].senha
+        }
+    }).then((response) => {
+        cy.setCookie('location' , 'BR-PR')
+        window.localStorage.setItem('logadoCom', user[0].usuario)
+        window.sessionStorage.setItem('jwt2', response.body.jwt)
+    })
+})

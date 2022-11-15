@@ -5,6 +5,7 @@ class ExperienciaPage {
     get #cmpLocalizacao() { return cy.get('[data-test="experience-location"] > .MuiInputBase-root > .MuiInputBase-input')}
     get #cmpDataIni() { return cy.get('#from')}
     get #cmpDataFim() { return cy.get('#to')}
+    get #chkAtual
     get #getDescricao() { return cy.get('[rows="1"]')}
     get #btnAdicionar() { return cy.get('[data-test="experience-submit"]')}
 

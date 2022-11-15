@@ -39,10 +39,5 @@ it('Deve validar o retorno dos usuários', () => {
     expect(usuarios[0].usuario).to.equal("teste@dojo.com")
 });
 
-
-
-
-
-
-    
+  
 });

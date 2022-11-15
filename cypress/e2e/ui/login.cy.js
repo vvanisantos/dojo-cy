@@ -13,7 +13,7 @@ describe('Funcionalidade: Tela de Login', () => {
         cy.screenshot()
     });
     
-    it.only('Deve fazer login com sucesso', () => {
+    it('Deve fazer login com sucesso', () => {
         cy.get('[data-test="login-email"] > .MuiInputBase-root > .MuiInputBase-input').type('vanessa@teste.com')
         cy.get('[data-test="login-password"] > .MuiInputBase-root > .MuiInputBase-input').type('teste@123')
         cy.get('[data-test="login-submit"]').click()
